@@ -1,33 +1,64 @@
 <template>
-    <div>
-        <!-- 不用：默认为传递为字符串，使用v-bind:绑定传递为js表达式 -->
-        <hello></hello>
-        <hr>
-        <!-- 使用混入的方法 -->
-        <button @click="show">点我调用混入</button>
-        <hr>
-        <!-- 使用全局混入的数据 -->
-        <h1>{{ msg }}</h1>
-        <ul>
-            <!-- 应用全局过滤器 -->
-            <li>name:{{ name | upper(name) }}</li>
-            <li>age:{{ age }}</li>
-            <li>sex:{{ sex }}</li>
-        </ul>
+    <div class="app">
+        <div class="head">
+            <!-- 将父组件定义的方法传递给子组件 -->
+            <todoInput :addTodo="addTodo" />
+        </div>
+        <div class="center">
+            <todoList :todoList="todos" />
+        </div>
+        <div class="foooter">
+            <todoTotal :total="todos.length" />
+        </div>
     </div>
 </template>
 
 <script>
-import Hello from './components/hello.vue'
+import todoInput from './components/todoInput.vue'
+import todoList from './components/todoList.vue'
+import todoTotal from './components/todoTotal.vue'
 export default {
     name: 'App',
     components: {
-        Hello
+        todoInput,
+        todoList,
+        todoTotal,
     },
     data() {
         return {
-            msg: '父组件使用全局混入数据'
+            todos: [
+                { id: '1234', todo: '睡觉', done: true },
+                { id: '123', todo: '吃饭', done: true },
+            ]
         }
     },
+    methods: {
+        // 接收子组件传递来的参数
+        addTodo(todo) {
+            this.todos.unshift(todo)
+        }
+    }
 }
 </script>
+<style>
+.app {
+    width: 500px;
+    height: 400px;
+    background-color: azure;
+}
+
+.head {
+    width: 100%;
+    height: 10%;
+}
+
+.center {
+    width: 100%;
+    height: 70%;
+}
+
+.footer {
+    width: 100%;
+    height: 20%;
+}
+</style>
