@@ -5,10 +5,10 @@
             <todoInput :addTodo="addTodo" />
         </div>
         <div class="center">
-            <todoList :todoList="todos" />
+            <todoList :todoList="todos" :changeDone="changeDone" />
         </div>
         <div class="foooter">
-            <todoTotal :total="todos.length" />
+            <todoTotal :todoTotal="todos.length" />
         </div>
     </div>
 </template>
@@ -36,6 +36,13 @@ export default {
         // 接收子组件传递来的参数
         addTodo(todo) {
             this.todos.unshift(todo)
+        },
+        changeDone(id) {
+            this.todos.forEach((item) => {
+                if (item.id === id) {
+                    item.done = !item.done
+                }
+            })
         }
     }
 }

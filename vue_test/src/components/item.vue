@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <input type="checkbox" :checked="item.done">
+        <input type="checkbox" :checked="item.done" @change="handChange(item.id)">
         <span>{{ item.todo }}</span>
         <button>删除</button>
     </div>
@@ -9,7 +9,12 @@
 <script>
 export default {
     name: 'TodoItem',
-    props: ['item']
+    props: ['item', 'changeDone'],
+    methods: {
+        handChange(id) {
+            this.changeDone(id)
+        }
+    }
 }
 </script>
 
@@ -19,6 +24,7 @@ export default {
     height: 30px;
     margin: 3%;
     padding: 2%;
+    display: flex;
     border-bottom: 1px solid skyblue;
     font-size: 20px;
 }
@@ -32,7 +38,7 @@ span {
 }
 
 button {
-    margin-left: 70%;
+    margin-left: 65%;
     color: #fff;
     background-color: rgb(239, 50, 50);
 }

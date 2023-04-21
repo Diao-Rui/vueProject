@@ -17,7 +17,8 @@ export default {
     },
     methods: {
         add() {
-            if (!this.todo) return
+            this.todo = this.todo.trim()
+            if (!this.todo) return alert('输入不能为空')
             const todo = {
                 id: nanoid(),
                 todo: this.todo,

@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <Item v-for="item in todoList" :key="item.id" :item="item" />
+        <Item v-for="item in todoList" :key="item.id" :item="item" :changeDone="changeDone" />
     </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     components: {
         Item
     },
-    props: ['todoList']
+    props: ['todoList', 'changeDone']
 }
 </script>
 <style scoped>
