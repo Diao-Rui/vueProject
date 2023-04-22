@@ -1,14 +1,11 @@
 <template>
-    <div class="app">
-        <div class="head">
-            <!-- 将父组件定义的方法传递给子组件 -->
-            <todoInput :addTodo="addTodo" />
-        </div>
-        <div class="center">
-            <todoList :todoList="todos" :changeDone="changeDone" />
-        </div>
-        <div class="foooter">
-            <todoTotal :todoTotal="todos.length" />
+    <div id="root">
+        <div class="todo-container">
+            <div class="todo-wrap">
+                <todoInput :addTodo="addTodo" />
+                <todoList :todos="todos" :checkTodo="checkTodo" />
+                <todoTotal :todos="todos" />
+            </div>
         </div>
     </div>
 </template>
@@ -27,17 +24,18 @@ export default {
     data() {
         return {
             todos: [
-                { id: '1234', todo: '睡觉', done: true },
-                { id: '123', todo: '吃饭', done: true },
+                { id: '1234', title: '睡觉', done: true },
+                { id: '123', title: '吃饭', done: true },
             ]
         }
     },
     methods: {
         // 接收子组件传递来的参数
         addTodo(todo) {
+            console.log(todo);
             this.todos.unshift(todo)
         },
-        changeDone(id) {
+        checkTodo(id) {
             this.todos.forEach((item) => {
                 if (item.id === id) {
                     item.done = !item.done
@@ -48,24 +46,47 @@ export default {
 }
 </script>
 <style>
-.app {
-    width: 500px;
-    height: 400px;
-    background-color: azure;
+/*base*/
+body {
+    background: #fff;
 }
 
-.head {
-    width: 100%;
-    height: 10%;
+.btn {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
 }
 
-.center {
-    width: 100%;
-    height: 70%;
+.btn-danger {
+    color: #fff;
+    background-color: #da4f49;
+    border: 1px solid #bd362f;
 }
 
-.footer {
-    width: 100%;
-    height: 20%;
+.btn-danger:hover {
+    color: #fff;
+    background-color: #bd362f;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.todo-container {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.todo-container .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 </style>

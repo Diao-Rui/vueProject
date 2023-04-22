@@ -1,6 +1,6 @@
 <template>
-    <div class="head">
-        <input type="text" v-model="todo" placeholder="请输入代办项" @keyup.enter="add">
+    <div class="todo-header">
+        <input type="text" placeholder="请输入你的任务名称，按回车键确认" v-model="title" @keyup.enter="add" />
     </div>
 </template>
 
@@ -12,16 +12,16 @@ export default {
     props: ['addTodo'],
     data() {
         return {
-            todo: ''
+            title: ''
         }
     },
     methods: {
         add() {
-            this.todo = this.todo.trim()
-            if (!this.todo) return alert('输入不能为空')
+            this.title = this.title.trim()
+            if (!this.title) return alert('输入不能为空')
             const todo = {
                 id: nanoid(),
-                todo: this.todo,
+                title: this.title,
                 done: false
             }
             // 调用父组件的方法，传递信息
@@ -34,14 +34,19 @@ export default {
 </script>
 
 <style scoped>
-head {
-    width: 100%;
-    text-align: center;
+/*header*/
+.todo-header input {
+    width: 560px;
+    height: 28px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 7px;
 }
 
-input {
-    width: 90%;
-    font-size: 25px;
-    margin: 2%;
+.todo-header input:focus {
+    outline: none;
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 </style>

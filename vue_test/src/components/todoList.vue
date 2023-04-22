@@ -1,7 +1,7 @@
 <template>
-    <div class="content">
-        <Item v-for="item in todoList" :key="item.id" :item="item" :changeDone="changeDone" />
-    </div>
+    <ul class="todo-main">
+        <Item v-for="todoObj in todos" :key="todoObj.id" :todo="todoObj" :checkTodo="checkTodo" />
+    </ul>
 </template>
 
 <script>
@@ -11,14 +11,24 @@ export default {
     components: {
         Item
     },
-    props: ['todoList', 'changeDone']
+    props: ['todos', 'checkTodo']
 }
 </script>
 <style scoped>
-.content {
-    width: 100%;
-    height: 100%;
-    text-align: left;
-    overflow: auto;
+/*main*/
+.todo-main {
+    margin-left: 0px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 0px;
+}
+
+.todo-empty {
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding-left: 5px;
+    margin-top: 10px;
 }
 </style>

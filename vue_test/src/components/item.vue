@@ -1,45 +1,68 @@
 <template>
-    <div class="box">
-        <input type="checkbox" :checked="item.done" @change="handChange(item.id)">
-        <span>{{ item.todo }}</span>
-        <button>删除</button>
-    </div>
+    <li>
+        <label>
+            <input type="checkbox" :checked="todo.done" @change="handChange(todo.id)" />
+            <!-- 如下代码也能实现功能，但是不太推荐，因为有点违反原则，因为修改了props -->
+            <!-- <input type="checkbox" v-model="todo.done"/> -->
+            <span>{{ todo.title }}</span>
+        </label>
+        <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+    </li>
 </template>
 
 <script>
 export default {
     name: 'TodoItem',
-    props: ['item', 'changeDone'],
+    props: ['todo', 'checkTodo'],
     methods: {
         handChange(id) {
-            this.changeDone(id)
+            this.checkTodo(id)
         }
     }
 }
 </script>
 
 <style scoped>
-.box {
-    width: 90%;
-    height: 30px;
-    margin: 3%;
-    padding: 2%;
-    display: flex;
-    border-bottom: 1px solid skyblue;
-    font-size: 20px;
+/*item*/
+li {
+    list-style: none;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 5px;
+    border-bottom: 1px solid #ddd;
 }
 
-input {
-    zoom: 1.5;
+li label {
+    float: left;
+    cursor: pointer;
 }
 
-span {
-    margin-left: 3%;
+li label li input {
+    vertical-align: middle;
+    margin-right: 6px;
+    position: relative;
+    top: -1px;
 }
 
-button {
-    margin-left: 65%;
-    color: #fff;
-    background-color: rgb(239, 50, 50);
+li button {
+    float: right;
+    display: none;
+    margin-top: 3px;
+}
+
+li:before {
+    content: initial;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li:hover {
+    background-color: #ddd;
+}
+
+li:hover button {
+    display: block;
 }
 </style>
