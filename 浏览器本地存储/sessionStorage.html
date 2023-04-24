@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sessionStorage</title>
+  </head>
+  <body>
+    <h2>sessionStorage</h2>
+    <button onclick="add()">点我存一个数据</button>
+    <button onclick="del()">点我删除一个数据</button>
+    <button onclick="clearALL()">点我删除所有数据</button>
+    <script>
+      let num = 99;
+      let person = {
+        name: "zhangshan",
+        age: 15,
+      };
+      function add() {
+        sessionStorage.setItem("num", num);
+        sessionStorage.setItem("person", JSON.stringify(person));
+      }
+      function del() {
+        sessionStorage.removeItem("num");
+      }
+      function clearALL() {
+        sessionStorage.clear();
+      }
+    </script>
+  </body>
+</html>
