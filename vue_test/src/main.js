@@ -1,6 +1,5 @@
 // 导入vue
 import Vue from "vue";
-
 // 导入APP组件
 import App from "./App.vue";
 
