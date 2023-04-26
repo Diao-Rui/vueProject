@@ -10,7 +10,6 @@
 export default {
     name: 'SchoolView',
     // 接收父组件传递来的对象和函数
-    props: ['getSch'],
     data() {
         return {
             name: '尚硅谷',
@@ -21,8 +20,20 @@ export default {
         // 调用父组件的方法，给父组件发送信息
         sendSchoolName() {
             this.getSch(this.name)
+        },
+        // 定义事件回调函数
+        getStuName(name) {
+            console.log('school 收到了学生姓名', name);
         }
     },
+    mounted() {
+        // 给全局事件总线定义自定义事件
+        this.$bus.$on('getStuName', this.getStuName)
+    },
+    beforeDestroy() {
+        // 解绑
+        this.$bus.$off('getStuName')
+    }
 }
 </script>
 

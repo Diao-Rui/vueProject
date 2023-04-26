@@ -43,14 +43,6 @@ export default {
                 }
             })
         },
-        // 更新todo
-        updateTodo(id, value) {
-            this.todos.forEach((item) => {
-                if (item.id === id) {
-                    item.title = value
-                }
-            })
-        },
         // 消息订阅会返回两个值用占位符（messageName，data）
         deleteTodo(_, id) {
             this.todos = this.todos.filter(item => item.id != id)
@@ -84,8 +76,6 @@ export default {
         // 给事件总线绑定事件
         this.$bus.$on('checkTodo', this.checkTodo)
         // this.$bus.$on('deleteTodo', this.deleteTodo)
-        // 给全局事件总线绑定修改事件
-        this.$bus.$on('updateTodo', this.updateTodo)
         // 订阅消息
         this.pubsubId = pubsub.subscribe('deleteTodo', this.deleteTodo)
     },
@@ -121,18 +111,6 @@ body {
     color: #fff;
     background-color: #da4f49;
     border: 1px solid #bd362f;
-}
-
-.btn-edit {
-    color: #fff;
-    background-color: skyblue;
-    margin-right: 5px;
-    border: 1px solid rgb(122, 184, 208);
-}
-
-.btn-edit:hover {
-    color: #fff;
-    background-color: rgb(122, 184, 208);
 }
 
 .btn-danger:hover {
