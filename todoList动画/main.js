@@ -1,5 +1,6 @@
 // 导入vue
 import Vue from "vue";
+
 // 导入APP组件
 import App from "./App.vue";
 
@@ -10,4 +11,8 @@ Vue.config.productionTip = false;
 new Vue({
   el: "#app",
   render: (h) => h(App),
+  // 安装全局事件总线
+  beforeCreate() {
+    Vue.prototype.$bus = this;
+  },
 });
