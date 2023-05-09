@@ -1,17 +1,20 @@
 <template>
-    <div>
-        <hello></hello>
+    <!-- 定义一个容器 -->
+    <div class="container">
+        <!-- search组件 调用new VueComponent-->
+        <Search />
+        <!-- list组件 -->
+        <List />
     </div>
 </template>
 
 <script>
-import Hello from './components/hello.vue'
+// 引入组件
+import Search from './components/search'
+import List from './components/list'
 export default {
     name: 'App',
-    components: {
-        Hello
-    }
+    // 注册组件
+    components: { Search, List }
 }
 </script>
-
-<style></style>
