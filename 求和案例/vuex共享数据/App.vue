@@ -1,18 +1,18 @@
 <template>
 	<div>
-		<Count />
+		<child />
 		<hr>
 		<Person />
 	</div>
 </template>
 
 <script>
-import Count from './components/Count'
+import Child from './components/Child'
 import Person from './components/Person'
 
 export default {
 	name: 'App',
-	components: { Count, Person },
+	components: { Child, Person },
 	mounted() {
 		// console.log('App',this)
 	},
